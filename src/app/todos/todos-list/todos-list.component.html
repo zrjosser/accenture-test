@@ -1,0 +1,72 @@
+<app-nav></app-nav>
+<app-modal-todo #modal></app-modal-todo>
+<section class="vh-100" style="box-sizing: content-box;">
+    <div class="container py-1 h-100">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-12 col-xl-10">
+
+                <div class="card mask-custom">
+                    <div class="card-body p-2 text-white">
+
+                        <div class="text-center pt-3 pb-2">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-todo-list/check1.webp"
+                                alt="Check" width="60">
+                            <span>
+                                <h3>Lista de Tareas</h3>
+                            </span>
+                        </div>
+
+                        <button type="button" (click)="openModal(modal, 'ADD', newTask)"
+                            class="btn btn-primary">Agregar</button>
+
+                        <table class="table table-sm text-white table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">checkicon</th>
+                                    <th scope="col">Titulo</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="fw-normal" *ngFor="let task of tasks; let i = index">
+
+                                    <td class="align-center">
+                                        <a (click)="markDone(i)">
+                                            <span><i
+                                                    [ngClass]="task.completed ? 'bi bi-calendar-check-fill' : 'bi bi-calendar-fill'"></i></span>
+                                        </a>
+                                    </td>
+
+                                    <td class="align-middle">
+                                        <span>{{task.title}}</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <span>{{task.description}}</span>
+                                    </td>
+                                    <td class="align-middle">
+                                        <h6 class="mb-0"><span class="badge bg-danger">{{task.completed ? 'Completado' :
+                                                'En curso'}}</span></h6>
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button (click)="openModal(modal, 'EDIT', selectedTask)" type="button"
+                                                class="btn btn-primary">Editar</button>
+                                            <button (click)="delete(i)" type="button"
+                                                class="btn btn-primary">Eliminar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

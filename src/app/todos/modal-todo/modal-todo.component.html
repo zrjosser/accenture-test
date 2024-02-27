@@ -1,0 +1,23 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{type === 'ADD' ? 'Agregar Tarea' : 'Editar Tarea' }}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <div class="mb-3">
+                <label for="title" class="form-label">Titulo</label>
+                <input formControlName="title" name="title" type="text" class="form-control" id="title"
+                    placeholder="ejemplo">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descripcion</label>
+                <textarea formControlName="description" name="description" class="form-control"
+                    id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Guardar</button>
+    </div>
+</ng-template>
